@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @financial_operation.type %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @financial_operation.date %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @financial_operation.value %>
+</p>
+
+<p>
+  <strong>Cpf:</strong>
+  <%= @financial_operation.cpf %>
+</p>
+
+<p>
+  <strong>Card:</strong>
+  <%= @financial_operation.card %>
+</p>
+
+<p>
+  <strong>Ocurrence time:</strong>
+  <%= @financial_operation.ocurrence_time %>
+</p>
+
+<p>
+  <strong>Store owner:</strong>
+  <%= @financial_operation.store_owner %>
+</p>
+
+<p>
+  <strong>Store name:</strong>
+  <%= @financial_operation.store_name %>
+</p>
+
+<%= link_to 'Edit', edit_financial_operation_path(@financial_operation) %> |
+<%= link_to 'Back', financial_operations_path %>

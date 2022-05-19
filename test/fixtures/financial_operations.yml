@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 1
+  date: 2022-05-18
+  value: 1.5
+  cpf: MyString
+  card: MyString
+  ocurrence_time: 2022-05-18 22:40:17
+  store_owner: MyString
+  store_name: MyString
+
+two:
+  type: 1
+  date: 2022-05-18
+  value: 1.5
+  cpf: MyString
+  card: MyString
+  ocurrence_time: 2022-05-18 22:40:17
+  store_owner: MyString
+  store_name: MyString

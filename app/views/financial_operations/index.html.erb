@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Financial Operations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Date</th>
+      <th>Value</th>
+      <th>Cpf</th>
+      <th>Card</th>
+      <th>Ocurrence time</th>
+      <th>Store owner</th>
+      <th>Store name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @financial_operations.each do |financial_operation| %>
+      <tr>
+        <td><%= financial_operation.type %></td>
+        <td><%= financial_operation.date %></td>
+        <td><%= financial_operation.value %></td>
+        <td><%= financial_operation.cpf %></td>
+        <td><%= financial_operation.card %></td>
+        <td><%= financial_operation.ocurrence_time %></td>
+        <td><%= financial_operation.store_owner %></td>
+        <td><%= financial_operation.store_name %></td>
+        <td><%= link_to 'Show', financial_operation %></td>
+        <td><%= link_to 'Edit', edit_financial_operation_path(financial_operation) %></td>
+        <td><%= link_to 'Destroy', financial_operation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Financial Operation', new_financial_operation_path %>
