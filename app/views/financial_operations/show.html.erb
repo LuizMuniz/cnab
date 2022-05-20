@@ -1,44 +1,47 @@
-<p id="notice"><%= notice %></p>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Resumo da importacao</h5>
+    <% if flash[:notice].present? %>
+      <div class="alert alert-success" role="alert">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
 
-<p>
-  <strong>Type:</strong>
-  <%= @financial_operation.type %>
-</p>
+    <table class="table table-striped">
+      <thead>
+        <th>Tipo</th>
+        <th>Data</th>
+        <th>Valor</th>
+        <th>CPF</th>
+        <th>Cartão</th>
+        <th>Hora</th>
+        <th>Dono da loja</th>
+        <th>Nome loja</th>
+      </thead>
+      <% @pessoas.each do |pessoa| %>
+        <tr>
+          <td><%= pessoa.type %></td>
+          <td><%= pessoa.date %></td>
+          <td><%= pessoa.value %></td>
+          <td><%= pessoa.cpf %></td>
+          <td><%= pessoa.card %></td>
+          <td><%= pessoa.ocurrence_time %></td>
+          <td><%= pessoa.store_owner %></td>
+          <td><%= pessoa.store_name %></td>
+        </tr>
+      <% end %>
+    </table>
 
-<p>
-  <strong>Date:</strong>
-  <%= @financial_operation.date %>
-</p>
-
-<p>
-  <strong>Value:</strong>
-  <%= @financial_operation.value %>
-</p>
-
-<p>
-  <strong>Cpf:</strong>
-  <%= @financial_operation.cpf %>
-</p>
-
-<p>
-  <strong>Card:</strong>
-  <%= @financial_operation.card %>
-</p>
-
-<p>
-  <strong>Ocurrence time:</strong>
-  <%= @financial_operation.ocurrence_time %>
-</p>
-
-<p>
-  <strong>Store owner:</strong>
-  <%= @financial_operation.store_owner %>
-</p>
-
-<p>
-  <strong>Store name:</strong>
-  <%= @financial_operation.store_name %>
-</p>
-
-<%= link_to 'Edit', edit_financial_operation_path(@financial_operation) %> |
-<%= link_to 'Back', financial_operations_path %>
+    <ul class="list-group">
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        Quantidade de registros contidas no lote
+        <span class="badge badge-primary badge-pill"><%= @response[:total] %></span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        Receita bruta total
+        <span class="badge badge-primary badge-pill"><%= number_to_currency(@response[:receita], :unit => "R$ ") %></span>
+      </li>
+    </ul>
+    <%= link_to "Nova importação", financial_operations_path, class: 'btn btn-sm btn-success btn-novo' %>
+  </div>
+</div>
