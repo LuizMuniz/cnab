@@ -1,5 +1,4 @@
 class FinancialOperationsController < ApplicationController
-  # before_action :set_financial_operation, only: %i[ show edit update destroy ]
 
   def index
     render :index
@@ -7,12 +6,13 @@ class FinancialOperationsController < ApplicationController
 
   def create
     @response = ImportService.call params[:arquivo]
+
     unless @response
     flash[:notice] = 'Extensão inválida'
       render :index
     else
       flash[:notice] = 'Dados importados com sucesso'
-      @pessoas = FinancialOperation.all
+      @financial_operations = FinancialOperation.all.order(store_name: :asc, type: :asc)
       render :show
     end
   end

@@ -18,16 +18,16 @@
         <th>Dono da loja</th>
         <th>Nome loja</th>
       </thead>
-      <% @pessoas.each do |pessoa| %>
+      <% @financial_operations.each do |financial_operation| %>
         <tr>
-          <td><%= pessoa.type %></td>
-          <td><%= pessoa.date %></td>
-          <td><%= pessoa.value %></td>
-          <td><%= pessoa.cpf %></td>
-          <td><%= pessoa.card %></td>
-          <td><%= pessoa.ocurrence_time %></td>
-          <td><%= pessoa.store_owner %></td>
-          <td><%= pessoa.store_name %></td>
+          <td><%= financial_operation.type %></td>
+          <td><%= financial_operation.date.strftime("%d/%m/%Y") %></td>
+          <td><%= financial_operation.value %></td>
+          <td><%= financial_operation.cpf %></td>
+          <td><%= financial_operation.card %></td>
+          <td><%= financial_operation.ocurrence_time.strftime("%H:%M") %></td>
+          <td><%= financial_operation.store_owner %></td>
+          <td><%= financial_operation.store_name %></td>
         </tr>
       <% end %>
     </table>

@@ -28,25 +28,29 @@ class ImportService < ApplicationService
 
     response = {
       total: 0,
-      receita: 0,
-      lote: Time.now.to_i
+      receita: 0
     }
 
     open("#{Rails.root}/public/uploads/#{arquivo}") do |file|
       file.each_with_index do |linha, i|
-        next if i == 0
-        coluna = linha.split("\t")
-        pessoa = FinancialOperation.new
-        pessoa.type = coluna[0]
-        pessoa.date = coluna[1]
-        pessoa.value = coluna[2].to_f
-        pessoa.cpf = coluna[3]
-        pessoa.card = coluna[4]
-        pessoa.ocurrence_time = coluna[5]
-        pessoa.store_owner = coluna[6]
-        pessoa.store_name = coluna[7]
+        ocurrence_time = linha[42..47]
+        hour = "#{ocurrence_time[0]}#{ocurrence_time[1]}:#{ocurrence_time[2]}
+                                    #{ocurrence_time[3]}:#{ocurrence_time[4]}#{ocurrence_time[5]}"
+        
+        params = {
+          type: linha[0],
+          date: linha[1..8],
+          value: linha[9..18].to_f / 100,
+          cpf: linha[19..29],
+          card: linha[30..41],
+          ocurrence_time: hour,
+          store_owner: linha[48..61],
+          store_name: linha[62..80],
+        }
+        financial_operation = FinancialOperation.new(params)
+        financial_operation.save
         response[:total] += 1
-        response[:receita] += (pessoa.value)
+        response[:receita] += (params[:value])
       end
     end
     response

@@ -1,4 +1,7 @@
 class FinancialOperation < ApplicationRecord
+    # disable STI
+    self.inheritance_column = :_type_disabled
+    
     validates :type, presence: true
     validates :date, presence: true
     validates :value, presence: true
