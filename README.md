@@ -1,0 +1,4 @@
+- Clonar o projeto
+- Rodar o comando docker-compose up
+- Acessar a url "http://localhost:3000/financial_operations"
+- Efetuar a importacao do arquivo cnab.txt
